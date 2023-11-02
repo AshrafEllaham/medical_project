@@ -1,0 +1,45 @@
+</div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="<?php echo ASSETS; ?>js/jquery-3.4.1.min.js" ></script>
+    <script src="<?php echo ASSETS; ?>js/popper.min.js" ></script>
+    <script src="<?php echo ASSETS; ?>js/bootstrap.min.js" ></script>
+
+
+    <script>
+        $(".delete").click(function()
+        {
+          alert("Are you sure that you want to delete this item!!");
+
+          var item_id = $(this).attr("data-id");
+          var table = $(this).attr("data-table");
+          var field = $(this).attr("data-field");
+
+            $.ajax({
+              type:"GET",
+              url:"<?php echo BURLA.'inc/delete.php'; ?>",
+              data:{item_id:item_id,table:table,field:field},
+              dataType:"JSON",
+              success:function(data)
+              {
+                  // console.log(data.message);
+                  if(data.message == "success")
+                  {
+                    alert("Deleted Success");
+                  }
+                  else 
+                  {
+                    alert("Can't delete this item!");
+                  }
+                  
+              }
+            })
+
+        });
+    </script>
+
+
+  </body>
+</html>
